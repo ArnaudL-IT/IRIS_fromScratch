@@ -25,7 +25,7 @@ def sigmoid(X):
 
 def costFunction(X, y, theta):
     n_examples = np.size(X, 0)
-    cost = 1./n_examples * (-y @ np.log(sigmoid(X @ theta)) - (1-y) @ np.log(1 - sigmoid(X @ theta)))
+    cost = - 1./n_examples * (y @ np.log(sigmoid(X @ theta)) + (1-y) @ np.log(1 - sigmoid(X @ theta)))
     grad = 1./(2.*n_examples) * np.transpose(X) @ (sigmoid(X @ theta) - y)
     return cost, grad
 
@@ -38,7 +38,9 @@ def lrPredict(theta: np.array, X: np.array)->np.array:
     print(proba[0:5, :])
     idx = np.argmax(proba, axis = 1)
     predictions = np.zeros(proba.shape)
-    predictions[:, idx] = 1
+    for i in range(np.size(proba, 0)):
+        for j in range(np.size(proba, 1)):
+            if proba[i, j] == np.max(proba[i, :]): predictions [i, j] = 1
     return predictions
 
 # Import the data into a Pandas DataFrame
@@ -82,6 +84,15 @@ learning_rate = 0.01
 # Initialize a n_features+1 x n_categories numpy array of uniformly distributed random parameters
 theta = np.random.uniform(size=((n_features+1, n_categories)))
 
+xs = np.arange(-10, 10, 1)
+sig_func = sigmoid(xs)
+plt.plot(xs, sig_func, 'r-')
+plt.grid(True)
+plt.title('Sigmoid function')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.show()
+
 # Apply the One-vs-All algorithm
 for i in range(n_categories):
 
@@ -99,6 +110,7 @@ for i in range(n_categories):
 
 # Predict the category of each flower of the test set
 predictions = lrPredict(theta, X_test)
+print(predictions[0:5, :])
 print(y_test[0:5, :])
 # Compute the accuracy of the model
 accuracy = np.mean([p == l for p, l in zip(predictions, y_test)])
