@@ -23,13 +23,18 @@ def split_data(data: np.array, labels: np.array, fraction = 0.7):
 def sigmoid(X):
     return 1./(1.+np.exp(-X))
 
-def costFunction(X, y, theta):
+def costFunction(X, y, theta, regCoef):
     n_examples = np.size(X, 0)
     cost = - 1./n_examples * (y @ np.log(sigmoid(X @ theta)) + (1-y) @ np.log(1 - sigmoid(X @ theta)))
+    costRegTerm = regCoef * theta[1::] @ theta[1::] / (2. * n_examples)
+    cost += costRegTerm
     grad = 1./(2.*n_examples) * np.transpose(X) @ (sigmoid(X @ theta) - y)
+    gradRegTerm = regCoef * theta / n_examples
+    gradRegTerm[0] = 0
+    grad += gradRegTerm
     return cost, grad
 
-def update_theta(theta: np.array, grad: np.array, learning_rate: float)->np.array:
+def update_theta(theta: np.array, grad: np.array, learning_rate: float, regCoef: float)->np.array:
     theta = theta - learning_rate * grad
     return theta
 
@@ -75,14 +80,15 @@ n_categories = np.size(y, 1)
 X = np.hstack((np.ones((n_examples, 1)), X))
 
 # Split the data-set into training and test sets
-X_train, X_test, y_train, y_test, idx_test = split_data(X, y, 0.7)
+X_train, X_test, y_train, y_test, idx_test = split_data(X, y, 0.6)
 
 # Set the parameters of the model
-max_iterations = 200
+max_iterations = 10000
 learning_rate = 0.01
+regCoef = 1
 
 # Initialize a n_features+1 x n_categories numpy array of uniformly distributed random parameters
-theta = np.random.uniform(size=((n_features+1, n_categories)))
+theta = np.random.uniform(size=((n_features+1, n_categories))) * 2. - 1.
 
 xs = np.arange(-10, 10, 1)
 sig_func = sigmoid(xs)
@@ -99,8 +105,8 @@ for i in range(n_categories):
     cost_to_plot = []
 
     for j in range(max_iterations):
-        cost, grad = costFunction(X_train, y_train[:, i], theta[:, i])
-        theta[:, i] = update_theta(theta[:, i], grad, learning_rate)
+        cost, grad = costFunction(X_train, y_train[:, i], theta[:, i], regCoef)
+        theta[:, i] = update_theta(theta[:, i], grad, learning_rate, regCoef)
         cost_to_plot.append(cost)
 
     plt.plot(range(max_iterations), cost_to_plot, 'g-', label = 'cost')
