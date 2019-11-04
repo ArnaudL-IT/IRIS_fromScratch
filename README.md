@@ -18,7 +18,7 @@ As a consequence, some parts of the code are not implemented in the most condens
 Note: The "requirements.txt" file contains all necessary libraries to run the code. This file was created using the pip freeze command. Alll the libraries can be installed (in a virtual environment for example) by using:
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 **1. Data visualization**
@@ -40,4 +40,14 @@ The main steps of this algorithm are:
 **3. Logistic regression**
 The second algorithm is an example of a logistic regression. This being a supervised learning algorithm requires to split the data-set into at least 2 subsets(training set and test set). Ideally, 3 subsets should be defined, including a cross-validation set used to tune the parameters of the model. The data-set being small and the number of free parameters as well, no cross-validation set is used here.
 
-**4. Support Vector Machine**
+**4. Neural Network**
+A neural network is for me the most interesting algorithm to implement from scratch. It is a complex algorithm that requires a good understanding of linear algebra for an efficient vectorization. It is also a good oportunity to generalize the gradient descent from the logistic regression algorithm as well as the calculation of the cost function.
+
+**5. Neural Network NOT from scratch (Scikit-learn)**
+Finaly, I wanted to use this simple data set to make my first dive into the Scikit-learn library. This library built on matplotlib, numpy and scipy provides all the tools that I developed above and so much more. The main reason to use it here is to start working with it, learn about it, see the different options availbale for a "Multi-Layer Perceptron Classifier" (name of the neural network class for one or more hidden layers) and also see what would be the improvement associated with the use of a highly optimized library.
+
+Along with machine learning algorithms, Scikit-learn offers methods to (pre-)process the data such as encoding the labels of a list of examples (handy to switch from string labels, i.e. category names) to unique integers. There is also a StandardScaler which makes scaling the data a kid's game, and also a method to split the data into a train and test set simply by specifying the ratio of one of them and if the data set has to be shuffled before being split.
+
+Altogether, the code ends up being much shorter and clearer and playing with the parameters of the model is simpler. One could now imagine looping over a given range of hidden units for the hidden layer or even over a range of hidden layers and find the best configuration for the NN.
+
+Scikit-learn even propose toy data-sets to practice including the IRIS data-set but here I sticked to the same version I used for the other models.
