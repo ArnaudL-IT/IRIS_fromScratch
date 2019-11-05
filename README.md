@@ -32,7 +32,7 @@ Looking at the mean and the standard deviation for the 4 features of each catego
 So this was helpful but with more categories and features, it would be hard to draw conclusions so easily. A better way do proceed is to vizualize the data. Let's use matplotlib to represent the distributions associated with each features and for each category.
 It is now clear that even the simple classification algorithm should be able to isolate the characteristics of an iris setosa and predict if a new flower belong to this category or not.
 
-Then, an array of 4x4 scatter plots is created using matplotlob to visualize the correlation bewtween each features 2 by 2. In a later version, the dots will be given colors according to their label (i.e. to which specie of Iris they belong).
+Then, an array of 4x4 scatter plots is created using matplotlob to visualize the correlation bewtween each features 2 by 2. The colors of the dots are given by an RGB code which for a problem with only 3 categories is ideal... R is setosa, G is versicolor, B is virginica.
 
 ![Scatter plots](https://github.com/ArnaudL-IT/IRIS_fromScratch/blob/master/IMG/Figure_1.png)
 
@@ -63,7 +63,7 @@ Altogether, the code ends up being much shorter and clearer and playing with the
 
 Scikit-learn even propose toy data-sets to practice including the IRIS data-set but here I sticked to the same version I used for the other models.
 
-**6. So what's next?**
+**6. So what's next?**<br />
 Although the IRIS data set is pretty simple and not much more can be done in terms of data analysis, I would like to keep working on this project to implement/test new ideas. Below is a starting list of what I have in mind so far:
 []Regroup all the algorithms as options within the main program to run them all with the same command
 []Make plots of the evolution of the cost on a 3D plot and explore what matplotlib has to offer
