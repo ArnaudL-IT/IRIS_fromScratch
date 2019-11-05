@@ -34,7 +34,7 @@ It is now clear that even the simple classification algorithm should be able to 
 
 Then, an array of 4x4 scatter plots is created using matplotlob to visualize the correlation bewtween each features 2 by 2. In a later version, the dots will be given colors according to their label (i.e. to which specie of Iris they belong).
 
-![Scatter plots](https://github.com/ArnaudL-IT/IRIS_fromScratch/IMG/Figure1.png)
+![Scatter plots](https://github.com/ArnaudL-IT/IRIS_fromScratch/blob/master/IMG/Figure_1.png)
 
 **2. K-Mean algorithm**<br />
 The first algorithm that I use to classify the data is an unsupervised learning algorithm. In this case, the labels are given for each examples but this is for educational purposes. Thus, the labels are not used until the end to calculate the accuracy of the model.
