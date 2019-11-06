@@ -65,6 +65,8 @@ Scikit-learn even propose toy data-sets to practice including the IRIS data-set 
 
 **6. So what's next?**<br />
 Although the IRIS data set is pretty simple and not much more can be done in terms of data analysis, I would like to keep working on this project to implement/test new ideas. Below is a starting list of what I have in mind so far:
-[]Regroup all the algorithms as options within the main program to run them all with the same command
-[]Make plots of the evolution of the cost on a 3D plot and explore what matplotlib has to offer
-[]Try to implement a class for a general neural network where the number of hidden layers and hidden units can be passed as arguments (much like the MLPClassifier from Scikit-learn)
+ - [ ] Regroup all the algorithms as options within the main program to run them all with the same command
+ - [ ] Make plots of the evolution of the cost on a 3D plot and explore what matplotlib has to offer
+ - [ ] Try to implement a class for a general neural network where the number of hidden layers and hidden units can be passed as arguments (much like the MLPClassifier from Scikit-learn)
+ - [ ] Implement the computation of the confusion matrix and its visual representation to gauge the performances of each models
+ - [ ] Make a scatter plot for 2 features with the color for the true labels and compare with another one with the predictions to visualize which examples are misclassified
